@@ -1,17 +1,15 @@
 package com.cydeo.banksimulation.entity;
 
-
 import com.cydeo.banksimulation.enums.AccountStatus;
 import com.cydeo.banksimulation.enums.AccountType;
-import lombok.*;
-
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-
 import java.math.BigDecimal;
 import java.util.Date;
-
-
 
 @Entity
 @Getter
@@ -33,13 +31,9 @@ public class Account {
 
     @Column(columnDefinition = "DATE")
     private Date creationDate;
+
     private Long userId;
+
     private BigDecimal balance;
-
-
-
-
-
-
 
 }

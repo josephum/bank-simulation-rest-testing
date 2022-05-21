@@ -1,13 +1,13 @@
 package com.cydeo.banksimulation.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
-import java.util.UUID;
-
 
 @Entity
 @Getter
@@ -26,7 +26,9 @@ public class Transaction {
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Account receiver;
+
     private BigDecimal amount;
+
     private String message;
 
     @Column(columnDefinition = "DATE")

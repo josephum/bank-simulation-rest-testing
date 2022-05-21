@@ -1,6 +1,5 @@
 package com.cydeo.banksimulation.mapper;
 
-
 import com.cydeo.banksimulation.dto.TransactionDTO;
 import com.cydeo.banksimulation.entity.Transaction;
 import org.modelmapper.ModelMapper;
@@ -9,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class TransactionMapper {
 
-    ModelMapper modelMapper;
+    private final ModelMapper modelMapper;
 
     public TransactionMapper(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;

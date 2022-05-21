@@ -15,13 +15,11 @@ public class AccountMapper {
     }
 
     public Account convertToEntity(AccountDTO accountDTO) {
-
         return modelMapper.map(accountDTO, Account.class);
-
     }
 
     public AccountDTO convertToDto(Account account) {
-
         return modelMapper.map(account, AccountDTO.class);
     }
+
 }
