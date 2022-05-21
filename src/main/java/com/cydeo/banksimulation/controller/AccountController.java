@@ -36,6 +36,7 @@ public class AccountController {
         return "account/create-account";
 
     }
+
     @PostMapping("/create")
     public String createAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO, BindingResult bindingResult, Model model){
         if(bindingResult.hasErrors()){
