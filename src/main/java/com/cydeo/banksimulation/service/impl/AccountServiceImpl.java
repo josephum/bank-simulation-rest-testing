@@ -3,31 +3,27 @@ package com.cydeo.banksimulation.service.impl;
 import com.cydeo.banksimulation.enums.AccountStatus;
 import com.cydeo.banksimulation.dto.AccountDTO;
 import com.cydeo.banksimulation.enums.AccountType;
+import com.cydeo.banksimulation.mapper.AccountMapper;
 import com.cydeo.banksimulation.repository.AccountRepository;
 import com.cydeo.banksimulation.service.AccountService;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-import java.math.BigDecimal;
-import java.util.Date;
+
 import java.util.List;
-import java.util.UUID;
 
 
-@Component
+
+@Service
 public class AccountServiceImpl implements AccountService {
 
     AccountRepository accountRepository;
 
-    public AccountServiceImpl(AccountRepository accountRepository) {
+    AccountMapper accountMapper;
 
+    public AccountServiceImpl(AccountRepository accountRepository, AccountMapper accountMapper) {
         this.accountRepository = accountRepository;
-    }
-
-
-    @Override
-    public void createNewAccount(AccountDTO accountDTO) {
-
-        return accountRepository.save(accountDTO);
+        this.accountMapper = accountMapper;
     }
 
     @Override
@@ -35,6 +31,14 @@ public class AccountServiceImpl implements AccountService {
 
         return accountRepository.findAll();
     }
+
+    @Override
+    public void createNewAccount(AccountDTO accountDTO) {
+
+        return accountRepository.save(accountDTO);
+    }
+
+
 
     @Override
     public List<AccountDTO> listAllActiveAccount() {
