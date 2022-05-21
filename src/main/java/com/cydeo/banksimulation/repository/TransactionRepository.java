@@ -21,6 +21,6 @@ public interface TransactionRepository extends JpaRepository<Transaction, Long> 
 List<Transaction> findLastTenTransactions();
 
     @Query("SELECT t FROM Transaction t WHERE t.sender.id = ?1 OR t.receiver.id = ?1")
-    List<TransactionDTO> findTransactionListById(Long id);
+    List<Transaction> findTransactionListById(Long id);
 
 }

@@ -124,6 +124,6 @@ public class TransactionServiceImpl implements TransactionService {
 
     @Override
     public List<TransactionDTO> findTransactionListByAccountId(Long id) {
-        return transactionRepository.findTransactionListById(id);
+        return transactionRepository.findTransactionListById(id).stream().map(transactionMapper::convertToDto).collect(Collectors.toList());
     }
 }

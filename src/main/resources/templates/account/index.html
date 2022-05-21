@@ -38,7 +38,7 @@
                         <td th:text="${accountDTO.getAccountType()}"></td>
                         <td th:text="${accountDTO.getCreationDate()}"></td>
                         <td><a class="btn btn-danger" th:href="@{/delete/{id}(id=${accountDTO.id})}">Delete</a></td>
-                        <td><a class="btn btn-success" th:href="@{/transactions/{id}(id=${accountDTO.id})}">Account
+                        <td><a class="btn btn-success" th:href="@{/transaction/{id}(id=${accountDTO.id})}">Account
                             Transactions</a></td>
                     </tr>
                     </tbody>
