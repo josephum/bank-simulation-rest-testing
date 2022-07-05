@@ -35,5 +35,7 @@ public class Account {
     private Long userId;
 
     private BigDecimal balance;
+    private String phoneNumber;
+    private Boolean otpVerified;
 
 }

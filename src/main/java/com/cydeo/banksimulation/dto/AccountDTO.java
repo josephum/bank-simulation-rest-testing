@@ -17,21 +17,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 public class AccountDTO {
-
     private Long id;
-
-    @NotNull
     private AccountType accountType;
-
     private AccountStatus accountStatus;
-
     private Date creationDate;
-
-    @NotNull
     private Long userId;
-
-    @NotNull
-    @Positive
     private BigDecimal balance;
+    private Boolean otpVerified;
+    private String phoneNumber;
 
 }

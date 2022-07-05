@@ -1,17 +1,22 @@
 package com.cydeo.banksimulation.controller;
 
 import com.cydeo.banksimulation.dto.AccountDTO;
+import com.cydeo.banksimulation.dto.OtpDTO;
+import com.cydeo.banksimulation.dto.ResponseWrapper;
 import com.cydeo.banksimulation.enums.AccountType;
 import com.cydeo.banksimulation.service.AccountService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/v1/account")
 public class AccountController {
 
     private final AccountService accountService;
@@ -20,38 +25,22 @@ public class AccountController {
         this.accountService = accountService;
     }
 
-    @GetMapping("/index")
-    public String accountList(Model model) {
-        model.addAttribute("accountList", accountService.listAllAccount());
-        return "account/index";
+    @GetMapping
+    public List<AccountDTO> accountList() {
+        return accountService.listAllAccount();
     }
 
-    @GetMapping("/create-form")
-    public String getCreateForm(Model model) {
-        model.addAttribute("accountDTO", new AccountDTO());
-        model.addAttribute("accountTypes", AccountType.values());
-        return "account/create-account";
-    }
-
-    @PostMapping("/create")
-    public String createAccount(@Valid @ModelAttribute("accountDTO") AccountDTO accountDTO, BindingResult bindingResult, Model model) {
-
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("accountTypes", AccountType.values());
-            return "account/create-account";
-        }
-
-        accountService.createNewAccount(accountDTO);
-        model.addAttribute("accountList", accountService.listAllAccount());
-
-        return "redirect:/index";
+    @PostMapping
+    public ResponseEntity<ResponseWrapper> createAccount(@RequestBody AccountDTO accountDTO) throws Exception {
+        OtpDTO otpDTO = accountService.createNewAccount(accountDTO);
+        return ResponseEntity.ok(new ResponseWrapper("Account is successfully created with non verified",otpDTO , HttpStatus.OK));
 
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("id") Long id) {
         accountService.deleteAccount(id);
-        return "redirect:/index";
+        return ResponseEntity.ok(new ResponseWrapper("Account is successfully deleted", HttpStatus.OK));
     }
 
 }

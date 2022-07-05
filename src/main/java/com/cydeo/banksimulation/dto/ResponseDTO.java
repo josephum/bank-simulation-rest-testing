@@ -1,11 +1,12 @@
 package com.cydeo.banksimulation.dto;
 
+import com.cydeo.banksimulation.enums.AccountStatus;
+import com.cydeo.banksimulation.enums.AccountType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.validation.constraints.*;
 import java.math.BigDecimal;
 import java.util.Date;
 
@@ -13,10 +14,7 @@ import java.util.Date;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class TransactionDTO {
-    private AccountDTO sender;
-    private AccountDTO receiver;
-    private BigDecimal amount;
-    private String message;
-    private Date creationDate;
+public class ResponseDTO {
+    private Integer result;
+    private Integer otpCode;
 }
