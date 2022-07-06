@@ -17,6 +17,8 @@ public class OtpController {
         this.otpService = otpService;
     }
 
+    // OTP -> One time password
+
     @PostMapping
     public ResponseEntity<ResponseWrapper> confirmOtp(@RequestBody OtpDTO otpDTO){
         otpService.confirmOtp(otpDTO.getOtpCode(), otpDTO.getOtpId());
