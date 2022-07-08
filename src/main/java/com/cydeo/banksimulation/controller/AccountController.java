@@ -6,6 +6,7 @@ import com.cydeo.banksimulation.dto.ResponseWrapper;
 import com.cydeo.banksimulation.enums.AccountType;
 import com.cydeo.banksimulation.service.AccountService;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,7 +17,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Controller
-@RequestMapping("/v1/account")
+@RequestMapping(value="/v1/account")
 public class AccountController {
 
     private final AccountService accountService;
@@ -26,8 +27,10 @@ public class AccountController {
     }
 
     @GetMapping
-    public List<AccountDTO> accountList() {
-        return accountService.listAllAccount();
+    public ResponseEntity<ResponseWrapper> accountList() {
+        List<AccountDTO> accountDTOS = accountService.listAllAccount();
+        return ResponseEntity.ok(new ResponseWrapper("Accounts are successfully retrieved",accountDTOS , HttpStatus.OK));
+
     }
 
     @PostMapping
@@ -37,7 +40,7 @@ public class AccountController {
 
     }
 
-    @GetMapping("/delete/{id}")
+    @DeleteMapping("/delete/{id}")
     public ResponseEntity<ResponseWrapper> deleteUser(@PathVariable("id") Long id) {
         accountService.deleteAccount(id);
         return ResponseEntity.ok(new ResponseWrapper("Account is successfully deleted", HttpStatus.OK));
